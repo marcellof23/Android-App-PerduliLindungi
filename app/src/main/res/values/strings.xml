@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="tekan_tombol_untuk_scan">Tekan tombol untuk scan</string>
+    <string name="temperatur">Temperatur</string>
 </resources>
