@@ -1,9 +1,7 @@
 package com.example.perludilindungi.ui.checkin
 
 import android.annotation.SuppressLint
-import android.app.SearchManager
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -12,6 +10,7 @@ import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -39,7 +38,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         // TempSensor
-        tvSuhu = findViewById(R.id.tv_suhu)
+        tvSuhu = findViewById(R.id.tv_temperatur)
         sensorMgr = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         if (sensorMgr.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE) != null) {
@@ -66,7 +65,6 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         super.onActivityResult(requestCode, resultCode, data)
         val result = IntentIntegrator.parseActivityResult(resultCode, data)
         if (result.contents != null) {
-            // result.contents // POST KE API
             postCheckInApi(result.contents)
         } else {
             AlertDialog.Builder(this)
@@ -75,7 +73,12 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun postCheckInApi(qrCode: String) {
+        // Components
+        val tvMessage: TextView = findViewById(R.id.tv_message)
+        val tvStatus: TextView = findViewById(R.id.tv_status)
+        val iconStatus: FrameLayout = findViewById(R.id.checkin_layout)
 
+        // Request Msg
         val checkinReq = CheckInRequest()
         checkinReq.qrCode = qrCode
         checkinReq.latitude = -6.1351855  // nanti set
@@ -91,19 +94,48 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
                 val res = response.body()
                 val success = res?.success
 
-                if (success == true) {
-                    val data = res.data
-                    if (data != null && data.size() != 0) {
-                        val tvUserStatus: TextView = findViewById(R.id.tv_userStatus)
-                        val tvMessage: TextView = findViewById(R.id.tv_message)
-                        tvUserStatus.text = data.get("userStatus").asString
-                        tvMessage.text = data.get("reason").asString
-                    }
-                } else {
-                    val tvMessage: TextView = findViewById(R.id.tv_message)
-                    tvMessage.text = res?.message.toString()
+                // Kalau QR code nya ngasal
+                if (success == null) {
+                    iconStatus.setBackgroundResource(0)
+                    tvStatus.text = ""
+                    tvMessage.text = "QR Code tidak valid, silahkan coba lagi."
                 }
+                // QR code valid, berhasil post
+                else if (success == true) {
+                    val data = res.data
 
+                    if (data != null && data.size() != 0) {
+
+                        val status = data.get("userStatus").asString
+                        if (status.equals("black")) {
+                            tvStatus.text = "Check-in Gagal"
+                            iconStatus.background =
+                                resources.getDrawable(R.drawable.cross_circle_black, theme)
+                            tvMessage.text = data.get("reason").asString
+                        } else if (status.equals("red")) {
+                            tvStatus.text = "Check-in Gagal"
+                            iconStatus.background =
+                                resources.getDrawable(R.drawable.cross_circle_red, theme)
+                            tvMessage.text = data.get("reason").asString
+                        } else if (status.equals("green")) {
+                            tvStatus.text = "Check-in Berhasil"
+                            iconStatus.background =
+                                resources.getDrawable(R.drawable.check_circle_green, theme)
+                            tvMessage.text = data.get("reason").asString
+                        } else if (status.equals("yellow")) {
+                            tvStatus.text = "Check-in Berhasil"
+                            iconStatus.background =
+                                resources.getDrawable(R.drawable.check_circle_yellow, theme)
+                            tvMessage.text = data.get("reason").asString
+                        }
+                        // QR code valid, gagal post
+                    } else {
+                        iconStatus.setBackgroundResource(0)
+                        tvStatus.text = ""
+                        tvMessage.text = res.message.toString()
+                    }
+
+                }
             }
 
             override fun onFailure(call: Call<CheckInResponse>, t: Throwable) {
@@ -118,7 +150,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent?) {
         if (event != null) {
             if (event.sensor.type == Sensor.TYPE_AMBIENT_TEMPERATURE) {
-                findViewById<TextView>(R.id.tv_suhu).text = event.values[0].toString() + " °C"
+                findViewById<TextView>(R.id.tv_temperatur).text = event.values[0].toString() + " °C"
             }
         }
     }
