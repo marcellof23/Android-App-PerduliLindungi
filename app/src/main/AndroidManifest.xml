@@ -16,7 +16,8 @@
         <activity
             android:name=".ui.checkin.CheckinActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="Check-in"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
