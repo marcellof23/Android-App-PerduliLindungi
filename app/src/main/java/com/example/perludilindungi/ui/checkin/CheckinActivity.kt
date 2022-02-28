@@ -1,43 +1,58 @@
 package com.example.perludilindungi.ui.checkin
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.location.Location
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import com.example.perludilindungi.R
 import com.example.perludilindungi.models.checkin.CheckInRequest
 import com.example.perludilindungi.models.checkin.CheckInResponse
 import com.example.perludilindungi.services.CheckInAPI
 import com.example.perludilindungi.utils.Retro
+import com.google.android.gms.location.*
 import com.google.zxing.integration.android.IntentIntegrator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CheckinActivity : AppCompatActivity(), SensorEventListener {
+    lateinit var tvMessage: TextView
+    lateinit var tvStatus: TextView
+    lateinit var iconStatus: FrameLayout
     lateinit var tvSuhu: TextView
     lateinit var sensorMgr: SensorManager
     lateinit var tempSensor: Sensor
     var isSensorAvailable: Boolean = true
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    var latitude: Double? = null
+    var longitude: Double? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkin)
-        // Back button
+        // Init
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        // TempSensor
+        tvMessage = findViewById(R.id.tv_message)
+        tvStatus = findViewById(R.id.tv_status)
+        iconStatus = findViewById(R.id.checkin_layout)
         tvSuhu = findViewById(R.id.tv_temperatur)
         sensorMgr = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -58,6 +73,97 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
             intentIntegrator.setOrientationLocked(true)
             intentIntegrator.initiateScan()
         }
+
+        // Location
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        getCurrentLocation()
+    }
+
+    private fun getCurrentLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestPermission()
+                    return
+                }
+                fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task ->
+                    val location: Location? = task.result
+                    if (location == null) {
+                        Toast.makeText(this, "Location null", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Get location success", Toast.LENGTH_SHORT).show()
+                        longitude = location.longitude
+                        latitude = location.latitude
+                    }
+                }
+
+            } else {
+                // open settings
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else {
+            // req permission
+            requestPermission()
+        }
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager: LocationManager =
+            getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+            ), PERMISSION_REQUEST_ACCESS_LOCATION
+
+        )
+    }
+
+    companion object {
+        private const val PERMISSION_REQUEST_ACCESS_LOCATION = 100
+    }
+
+    private fun checkPermissions(): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_ACCESS_LOCATION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(applicationContext, "Granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     // QR Scan
@@ -73,18 +179,13 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun postCheckInApi(qrCode: String) {
-        // Components
-        val tvMessage: TextView = findViewById(R.id.tv_message)
-        val tvStatus: TextView = findViewById(R.id.tv_status)
-        val iconStatus: FrameLayout = findViewById(R.id.checkin_layout)
 
         // Request Msg
         val checkinReq = CheckInRequest()
         checkinReq.qrCode = qrCode
-        checkinReq.latitude = -6.1351855  // nanti set
-        checkinReq.longitude = 11.0323457
+        checkinReq.latitude = latitude
+        checkinReq.longitude = longitude
 
-        println(checkinReq.latitude)
         val retro = Retro().getRetroClientInstance().create(CheckInAPI::class.java)
 
         retro.sendCheckIn(checkinReq).enqueue(object : Callback<CheckInResponse> {
@@ -94,11 +195,11 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
                 val res = response.body()
                 val success = res?.success
 
-                // Kalau QR code nya ngasal
+                // Kalau QR code nya ngasal/lokasi salah
                 if (success == null) {
                     iconStatus.setBackgroundResource(0)
                     tvStatus.text = ""
-                    tvMessage.text = "QR Code tidak valid, silahkan coba lagi."
+                    tvMessage.text = "Terjadi kesalahan, silahkan coba lagi."
                 }
                 // QR code valid, berhasil post
                 else if (success == true) {
