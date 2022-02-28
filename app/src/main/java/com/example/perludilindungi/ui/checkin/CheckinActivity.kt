@@ -79,6 +79,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         getCurrentLocation()
     }
 
+    // Location
     private fun getCurrentLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
@@ -96,7 +97,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
                 fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task ->
                     val location: Location? = task.result
                     if (location == null) {
-                        Toast.makeText(this, "Location null", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this, "Get location success", Toast.LENGTH_SHORT).show()
                         longitude = location.longitude
@@ -106,7 +107,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
 
             } else {
                 // open settings
-                Toast.makeText(this, "Turn on location", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Turn on location access", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 startActivity(intent)
             }
@@ -159,9 +160,9 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_ACCESS_LOCATION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(applicationContext, "Granted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Location access granted", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(applicationContext, "Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Location access denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -199,7 +200,8 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
                 if (success == null) {
                     iconStatus.setBackgroundResource(0)
                     tvStatus.text = ""
-                    tvMessage.text = "Terjadi kesalahan, silahkan coba lagi."
+                    tvMessage.text =
+                        "Terjadi kesalahan, silahkan coba lagi. Pastikan QR Code valid dan izin akses lokasi telah diberikan."
                 }
                 // QR code valid, berhasil post
                 else if (success == true) {
