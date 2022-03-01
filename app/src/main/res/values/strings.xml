@@ -5,4 +5,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="tekan_tombol_untuk_scan">Tekan tombol untuk scan</string>
     <string name="temperatur">Temperatur</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
