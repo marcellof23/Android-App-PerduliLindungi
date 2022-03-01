@@ -10,8 +10,8 @@ import java.util.*
 data class Faskes(
     var name: String,
     var code: String,
-    var address: Calendar,
-    var number: Calendar,
+    var address: String,
+    var number: String,
     var faskesType: FaskesType,
     var status: Long,
     var province: String,
