@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">PerluDilindungi</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_news">News</string>
+    <string name="title_location">Location</string>
+    <string name="title_bookmark">Bookmark</string>
     <string name="tekan_tombol_untuk_scan">Tekan tombol untuk scan</string>
     <string name="temperatur">Temperatur</string>
     <!-- TODO: Remove or change this placeholder text -->
