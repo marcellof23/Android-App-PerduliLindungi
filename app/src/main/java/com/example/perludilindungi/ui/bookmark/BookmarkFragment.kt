@@ -8,12 +8,26 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.perludilindungi.adapter.Adapter
 import com.example.perludilindungi.databinding.FragmentBookmarkBinding
+import com.example.perludilindungi.models.Users
 
 class BookmarkFragment : Fragment() {
 
     private lateinit var bookmarkViewModel: BookmarkViewModel
     private var _binding: FragmentBookmarkBinding? = null
+
+    val list = ArrayList<Users>()
+    val listUsers = arrayOf(
+        "Google",
+        "Apple",
+        "Microsoft",
+        "Asus",
+        "Zenpone",
+        "Acer"
+    )
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,7 +49,23 @@ class BookmarkFragment : Fragment() {
             textView.text = it
         })
 
-        var tes = bookmarkViewModel.getBookMarkApi();
+        var bookmarkTextView: RecyclerView = binding.recyclerViewBookmark
+        bookmarkTextView.setHasFixedSize(true)
+        bookmarkTextView.layoutManager = LinearLayoutManager(context)
+
+        for (i in 0 until listUsers.size){
+
+            list.add(Users(listUsers.get(i)))
+
+            if(listUsers.size - 1 == i){
+                val adapter = Adapter(list)
+                adapter.notifyDataSetChanged()
+
+                bookmarkTextView.adapter = adapter
+            }
+        }
+
+        bookmarkViewModel.getBookMarkApi();
 
         return root
     }

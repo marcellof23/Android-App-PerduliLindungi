@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PerluDilindungi">
         <activity
-            android:name=".ui.bookmark.BookmarkActivity"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -27,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.bookmark.BookmarkActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.checkin.CheckinActivity"
             android:exported="true"
