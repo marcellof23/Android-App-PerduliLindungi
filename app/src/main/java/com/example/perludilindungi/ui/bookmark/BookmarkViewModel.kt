@@ -1,16 +1,10 @@
 package com.example.perludilindungi.ui.bookmark
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.perludilindungi.R
-import com.example.perludilindungi.models.checkin.CheckInRequest
-import com.example.perludilindungi.models.checkin.CheckInResponse
-import com.example.perludilindungi.models.checkin.FaskesRequest
-import com.example.perludilindungi.models.checkin.FaskesResponse
-import com.example.perludilindungi.services.CheckInAPI
+import com.example.perludilindungi.models.faskes.FaskesResponse
 import com.example.perludilindungi.services.FaskesAPI
 import com.example.perludilindungi.utils.Retro
 import retrofit2.Call

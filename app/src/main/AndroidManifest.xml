@@ -16,10 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PerluDilindungi">
         <activity
-            android:name=".ui.news.NewsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_news"
-            android:theme="@style/Theme.PerluDilindungi.NoActionBar" />
+            android:name=".ui.bookmark.BookmarkActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -33,7 +31,7 @@
             android:name=".ui.checkin.CheckinActivity"
             android:exported="true"
             android:label="Check-in"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
