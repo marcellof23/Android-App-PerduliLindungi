@@ -34,6 +34,9 @@ class BookmarkFragment : Fragment() {
         bookmarkViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        var tes = bookmarkViewModel.getBookMarkApi();
+
         return root
     }
 

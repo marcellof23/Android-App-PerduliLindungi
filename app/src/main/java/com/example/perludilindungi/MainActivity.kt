@@ -35,3 +35,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 }
+
+class ActivityMainBinding {
+
+}

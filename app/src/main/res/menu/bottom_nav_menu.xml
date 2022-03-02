@@ -5,15 +5,18 @@
     <item
         android:id="@+id/navigation_news"
         android:icon="@drawable/article_foreground"
+        android:iconTint="#FFFFFF"
         android:title="@string/news" />
     <item
         android:id="@+id/navigation_location"
         android:icon="@drawable/ic_launcher_location_foreground"
+        android:iconTint="#FFFFFF"
         android:title="@string/lokasi_vaksin" />
 
     <item
         android:id="@+id/navigation_bookmark"
         android:icon="@drawable/bookmark_foreground"
+        android:iconTint="@color/white"
         android:title="@string/bookmark" />
 
 </menu>
