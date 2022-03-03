@@ -19,5 +19,5 @@ class FaskesResponse {
 
     @SerializedName("data")
     @Expose
-    var data: Array<JsonObject> = emptyArray()
+    var data: ArrayList<Faskes>? = arrayListOf<Faskes>()
 }

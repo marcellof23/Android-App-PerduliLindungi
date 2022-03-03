@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.perludilindungi.R
-import com.example.perludilindungi.adapter.Adapter
+import com.example.perludilindungi.adapter.FaskesAdapter
 import com.example.perludilindungi.databinding.ActivityMainBinding
 import com.example.perludilindungi.databinding.FragmentBookmarkBinding
 import com.example.perludilindungi.models.Users
