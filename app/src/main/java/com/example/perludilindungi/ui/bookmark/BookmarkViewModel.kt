@@ -16,18 +16,26 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.perludilindungi.MainActivity
+
+import androidx.recyclerview.widget.LinearLayoutManager
+
+import androidx.recyclerview.widget.RecyclerView
+
+import android.R
+import android.view.View
+import android.widget.AdapterView
+
 
 class BookmarkViewModel : ViewModel() {
-
     private val _text = MutableLiveData<String>().apply {
         value = "Bookmark Faskes"
     }
-
     val text: LiveData<String> = _text
 
-    fun getBookMarkApi() = viewModelScope.launch {
+    fun getBookMarkApi()  {
         val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
-
+        //var faskesResponse = FaskesResponse();
         val province = "DKI JAKARTA"
         val city = "KOTA ADM. JAKARTA PUSAT"
 
@@ -43,15 +51,20 @@ class BookmarkViewModel : ViewModel() {
                 }
 
                 else if (success == true) {
-                    val data = res.data
+                    val data = res.data;
+                    //faskesResponse.data = data;
                     Log.d("data", data?.get(0).toString());
                 }
+
+
             }
 
             override fun onFailure(call: Call<FaskesResponse>, t: Throwable) {
                 Log.d("EROR", "ERRORRRRRRRRRRRRRRRRR");
             }
         })
-
+        //return faskesResponse
     }
+
 }
+

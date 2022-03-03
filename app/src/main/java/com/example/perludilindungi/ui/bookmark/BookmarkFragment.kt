@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.perludilindungi.R
@@ -17,8 +18,14 @@ import com.example.perludilindungi.adapter.FaskesAdapter
 import com.example.perludilindungi.database.fakses.Faskes
 import com.example.perludilindungi.databinding.FragmentBookmarkBinding
 import com.example.perludilindungi.models.Users
+import com.example.perludilindungi.models.faskes.FaskesResponse
+import com.example.perludilindungi.services.FaskesAPI
+import com.example.perludilindungi.utils.Retro
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BookmarkFragment : Fragment() {
 
@@ -57,25 +64,6 @@ class BookmarkFragment : Fragment() {
         bookmarkViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
-        val tes = bookmarkViewModel.getBookMarkApi();
-        //Log.d("data-tes", tes.toString())
-
-        var bookmarkTextView: RecyclerView = binding.recyclerViewBookmark
-        bookmarkTextView.setHasFixedSize(true)
-        bookmarkTextView.layoutManager = LinearLayoutManager(context)
-
-        for (i in 0 until listUsers.size){
-
-            list.add(Users(listUsers.get(i)))
-
-            if(listUsers.size - 1 == i){
-                val adapter = AdapterUser(list)
-                adapter.notifyDataSetChanged()
-
-                bookmarkTextView.adapter = adapter
-            }
-        }
 
         return root
     }

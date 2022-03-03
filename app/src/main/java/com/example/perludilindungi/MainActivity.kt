@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_news, R.id.navigation_location, R.id.navigation_bookmark
             )
         )
-        //setupActionBarWithNavController(navController, appBarConfiguration)
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 }
