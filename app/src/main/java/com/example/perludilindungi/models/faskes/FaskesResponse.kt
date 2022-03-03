@@ -1,8 +1,12 @@
 package com.example.perludilindungi.models.faskes
 
+import com.example.perludilindungi.database.fakses.Faskes
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import org.json.JSONArray
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FaskesResponse {
     @SerializedName("success")
@@ -19,5 +23,5 @@ class FaskesResponse {
 
     @SerializedName("data")
     @Expose
-    var data: ArrayList<Faskes>? = arrayListOf<Faskes>()
+    var data: List<FaskesItem>? = emptyList()
 }

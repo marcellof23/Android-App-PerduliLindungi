@@ -1,10 +1,9 @@
 package com.example.perludilindungi.models.faskes
 
-import com.example.perludilindungi.database.fakses.Faskes
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Faskes {
+class FaskesItem {
     @SerializedName("id")
     @Expose
     var id: Int? = null

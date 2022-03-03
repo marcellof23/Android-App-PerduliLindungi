@@ -32,39 +32,5 @@ class BookmarkViewModel : ViewModel() {
         value = "Bookmark Faskes"
     }
     val text: LiveData<String> = _text
-
-    fun getBookMarkApi()  {
-        val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
-        //var faskesResponse = FaskesResponse();
-        val province = "DKI JAKARTA"
-        val city = "KOTA ADM. JAKARTA PUSAT"
-
-        retro.getFaskesVaksinasi(province, city).enqueue(object : Callback<FaskesResponse> {
-            override fun onResponse(
-                call: Call<FaskesResponse>, response: Response<FaskesResponse>
-            ) {
-                val res = response.body()
-                val success = res?.success
-
-                if (success == null) {
-                    Log.d("data", "null");
-                }
-
-                else if (success == true) {
-                    val data = res.data;
-                    //faskesResponse.data = data;
-                    Log.d("data", data?.get(0).toString());
-                }
-
-
-            }
-
-            override fun onFailure(call: Call<FaskesResponse>, t: Throwable) {
-                Log.d("EROR", "ERRORRRRRRRRRRRRRRRRR");
-            }
-        })
-        //return faskesResponse
-    }
-
 }
 

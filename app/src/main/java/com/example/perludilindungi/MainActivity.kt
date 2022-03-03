@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 
 import com.example.perludilindungi.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IUseBottomNav {
 
     private lateinit var binding: ActivityMainBinding
 

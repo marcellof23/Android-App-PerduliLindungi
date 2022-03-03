@@ -14,7 +14,7 @@ class AdapterUser(private val list:ArrayList<Users>) : RecyclerView.Adapter<Fask
     }
 
     override fun onBindViewHolder(holder: FaskesAdapter.Holder, position: Int) {
-        holder.view.BookmarkList.text = list?.get(position)?.name
+        holder.view.FaskesCode.text = list?.get(position)?.name
     }
 
     override fun getItemCount(): Int = list?.size

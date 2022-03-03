@@ -18,6 +18,7 @@ import com.example.perludilindungi.adapter.FaskesAdapter
 import com.example.perludilindungi.database.fakses.Faskes
 import com.example.perludilindungi.databinding.FragmentBookmarkBinding
 import com.example.perludilindungi.models.Users
+import com.example.perludilindungi.models.faskes.FaskesItem
 import com.example.perludilindungi.models.faskes.FaskesResponse
 import com.example.perludilindungi.services.FaskesAPI
 import com.example.perludilindungi.utils.Retro
@@ -33,7 +34,7 @@ class BookmarkFragment : Fragment() {
     private var _binding: FragmentBookmarkBinding? = null
 
     val list = ArrayList<Users>()
-    val listAdapter = ArrayList<Faskes>()
+    val listFaskes = ArrayList<FaskesItem?>()
     private lateinit var faskesAdapter: FaskesAdapter
 
     val listUsers = arrayOf(
@@ -65,7 +66,56 @@ class BookmarkFragment : Fragment() {
             textView.text = it
         })
 
+        getBookMarkApi();
+
         return root
+    }
+
+
+    fun getBookMarkApi()  {
+        val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
+        val province = "DKI JAKARTA"
+        val city = "KOTA ADM. JAKARTA PUSAT"
+
+        var bookmarkTextView: RecyclerView = binding.recyclerViewBookmark
+        bookmarkTextView.setHasFixedSize(true)
+        bookmarkTextView.layoutManager = LinearLayoutManager(context)
+
+        retro.getFaskesVaksinasi(province, city).enqueue(object : Callback<FaskesResponse> {
+            override fun onResponse(
+                call: Call<FaskesResponse>, response: Response<FaskesResponse>
+            ) {
+                val res = response.body()
+                Log.d("data", res?.success.toString());
+                Log.d("data", res?.count_total.toString());
+                val success = res?.success
+
+                if (success == null) {
+                    Log.d("data", "null");
+                }
+
+                else if (success == true) {
+                    val data = res.data;
+
+                    Log.d("data_f", data?.get(0).toString());
+                    Log.d("data_f", data?.get(0)?.code.toString());
+                    Log.d("data_f", data?.get(0)?.address.toString());
+
+                    for (i in 0 until res.count_total!!) {
+                        listFaskes.add(data?.get(i))
+                        if(res.count_total?.minus(1) == i){
+                            val adapter = FaskesAdapter(listFaskes)
+                            adapter.notifyDataSetChanged()
+                            bookmarkTextView.adapter = adapter
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<FaskesResponse>, t: Throwable) {
+                Log.d("EROR", "ERRORRRRRRRRRRRRRRRRR");
+            }
+        })
     }
 
     override fun onDestroyView() {
