@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.card_news.view.*
 
 
 
-class NewsAdapter(private val list: ArrayList<NewsData>) : RecyclerView.Adapter<NewsAdapter.Holder>(){
+class NewsAdapter(private val list: ArrayList<NewsData?>) : RecyclerView.Adapter<NewsAdapter.Holder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(LayoutInflater.from(parent.context).inflate(R.layout.card_news,parent,false))
     }
@@ -22,7 +22,9 @@ class NewsAdapter(private val list: ArrayList<NewsData>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.view.title.text = list?.get(position)?.title
         holder.view.date.text = list?.get(position)?.pubDate
-        loadImage(holder.view.photo, list?.get(position)?.link!![0])
+        var url = list?.get(position)?.enclosure?.url
+        Picasso.get().load(url).into(holder.view.photo)
+//        loadImage(holder.view.photo, list?.get(position)?.enclosure?.url!!)
         holder.itemView.setOnClickListener(object :View.OnClickListener{
             override fun onClick(v: View) {
                 val intent =  Intent(v.getContext(), WebActivity::class.java)

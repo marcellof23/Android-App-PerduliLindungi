@@ -19,31 +19,6 @@ class NewsResponse {
 
     @SerializedName("results")
     @Expose
-    var results: List<NewsData>? = null
+    var results: List<NewsData>? = emptyList()
 }
 
-class NewsData {
-    @SerializedName("title")
-    @Expose
-    var title: String? = null
-
-    @SerializedName("link")
-    @Expose
-    var link: List<String>? = null
-
-    @SerializedName("guid")
-    @Expose
-    var guid: String? = null
-
-    @SerializedName("pubDate")
-    @Expose
-    var pubDate: String? = null
-
-    @SerializedName("description")
-    @Expose
-    var description: Dictionary<String,String>? = null
-
-    @SerializedName("enclosure")
-    @Expose
-    var enclosure: Dictionary<String    ,String>? = null
-}

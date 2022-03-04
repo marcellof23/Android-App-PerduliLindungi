@@ -25,9 +25,7 @@ class NewsFragment : Fragment() {
 
     private lateinit var newsViewModel: NewsViewModel
     private var _binding: FragmentNewsBinding? = null
-
-    private lateinit var listNews: ArrayList<NewsData>
-    private lateinit var newsAdapter: NewsAdapter
+    val listNews = ArrayList<NewsData?>(0)
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,7 +36,6 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        getNewsApi()
         newsViewModel =
             ViewModelProvider(this).get(NewsViewModel::class.java)
 
@@ -52,11 +49,6 @@ class NewsFragment : Fragment() {
         })
         getNewsApi()
         return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     fun getNewsApi()  {
@@ -87,7 +79,7 @@ class NewsFragment : Fragment() {
                     Log.d("data_f", data?.get(0)?.link.toString());
 
                     for (i in 0 until res.count_total!!) {
-                        listNews.add(data?.get(i)!!)
+                        listNews.add(data?.get(i))
                         if(res.count_total?.minus(1) == i){
                             val adapter = NewsAdapter(listNews)
                             adapter.notifyDataSetChanged()
@@ -102,6 +94,12 @@ class NewsFragment : Fragment() {
             }
         })
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 
 //    fun getNewsApi2() {
