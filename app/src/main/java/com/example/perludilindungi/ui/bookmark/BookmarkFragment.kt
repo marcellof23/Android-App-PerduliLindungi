@@ -33,10 +33,7 @@ class BookmarkFragment : Fragment() {
 
     private lateinit var bookmarkViewModel: BookmarkViewModel
     private var _binding: FragmentBookmarkBinding? = null
-
-    val list = ArrayList<Users>()
     val listFaskes = ArrayList<FaskesItem?>()
-    private lateinit var faskesAdapter: FaskesAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
