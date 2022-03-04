@@ -44,9 +44,7 @@ class NewsFragment : Fragment() {
 
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val newsAdapter = NewsAdapter(listNews)
-        val recyclerView = binding.recycleViewNews
-        recyclerView.adapter = newsAdapter
+
 
         val textView: TextView = binding.textHome
         newsViewModel.text.observe(viewLifecycleOwner, Observer {
