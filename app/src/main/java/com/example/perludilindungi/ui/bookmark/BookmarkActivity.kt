@@ -43,5 +43,19 @@ class BookmarkActivity : AppCompatActivity(), IUseBottomNav {
 
         val textView: TextView = binding.textBookmark
         textView.setText("Bookmark Faskes")
+
+        val navView: BottomNavigationView = binding.navView
+
+        val navController = findNavController(R.id.nav_host_fragment_activity_bookmark)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_news, R.id.navigation_location, R.id.navigation_bookmark
+            )
+        )
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 }
