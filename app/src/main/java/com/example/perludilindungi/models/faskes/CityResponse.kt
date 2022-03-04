@@ -14,7 +14,7 @@ class CityResponse {
 
     @SerializedName("results")
     @Expose
-    var results: CityData? = null
+    var results: List<CityData>? = null
 }
 
 class CityData {

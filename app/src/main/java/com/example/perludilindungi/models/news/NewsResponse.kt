@@ -19,7 +19,7 @@ class NewsResponse {
 
     @SerializedName("results")
     @Expose
-    var results: NewsData? = null
+    var results: List<NewsData>? = null
 }
 
 class NewsData {

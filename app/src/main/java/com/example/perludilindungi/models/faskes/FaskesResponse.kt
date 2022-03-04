@@ -16,9 +16,9 @@ class FaskesResponse {
     @Expose
     var count_total: Int? = null
 
-    @SerializedName("results")
+    @SerializedName("data")
     @Expose
-    var results: FaskesData? = null
+    var data: List<FaskesData>? = null
 }
 
 class FaskesData {
@@ -72,7 +72,7 @@ class FaskesData {
 
     @SerializedName("detail")
     @Expose
-    var detail: FaskesDetailData? = null
+    var detail: List<FaskesDetailData>? = null
 
     @SerializedName("source_data")
     @Expose

@@ -15,7 +15,7 @@ class ProvinceResponse {
 
     @SerializedName("results")
     @Expose
-    var results: ProvinceData? = null
+    var results: List<ProvinceData>? = null
 }
 
 class ProvinceData {

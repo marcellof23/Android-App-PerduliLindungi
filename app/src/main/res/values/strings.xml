@@ -10,4 +10,8 @@
     <string name="news">News</string>
     <string name="lokasi_vaksin">Lokasi Vaksin</string>
     <string name="bookmark">Bookmark</string>
+    <string name="date">date</string>
+    <string name="title">Title</string>
+    <string name="dateValue">TextView</string>
+    <string name="image">image</string>
 </resources>
