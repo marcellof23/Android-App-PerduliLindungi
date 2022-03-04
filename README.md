@@ -7,7 +7,7 @@
 
 ## Deskripsi
 PerluLindungi merupakan aplikasi android yang menyediakan fitur-fitur untuk membantu melacak dan menghentikan penyebaran COVID-19 di Indonesia. Aplikasi dibuat menggunakan Android Studio dengan bahasa pemrograman Kotlin.
-###Fitur dari aplikasi ini:
+### Fitur dari aplikasi ini:
 1. Menampilkan berita mengenai COVID-19. Aplikasi ini menyediakan ratusan berita yang dapat dibaca agar 
 penggunanya lebih aware mengenai kondisi COVID-19 di Indonesia.
 2. Menampilkan Daftar Faskes untuk Vaksinasi. Aplikasi ini menampilkan daftar faskes yang menyediakan fasilitas
