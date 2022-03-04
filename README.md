@@ -34,7 +34,7 @@ Ketika aplikasi dibuka, akan ada tiga halaman utama yang dapat diakses menggunak
 ## Library yang digunakan
 - ZXing                 : QR code scanner
 - Google Play services  : Akses lokasi pengguna
-- Retrofit              : Melakukan akses Aplikasi
+- Retrofit              : Melakukan akses API
 - Gson                  : Melakukan operasi pada file json
 
 ## Pembagian kerja
