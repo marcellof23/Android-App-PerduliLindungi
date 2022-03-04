@@ -1,5 +1,6 @@
 package com.example.perludilindungi.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.perludilindungi.R
 import com.example.perludilindungi.models.faskes.FaskesItem
+import com.example.perludilindungi.ui.bookmark.BookmarkActivity
+import com.example.perludilindungi.ui.bookmark.DetailFaskesActivity
 import com.example.perludilindungi.ui.bookmark.FaskesDetailFragment
 import kotlinx.android.synthetic.main.list_bookmark.view.*
 
@@ -24,13 +27,11 @@ class FaskesAdapter(private val list:ArrayList<FaskesItem?>) : RecyclerView.Adap
         holder.view.FaskesType.text = list?.get(position)?.type
         holder.view.FaskesNumber.text = list?.get(position)?.number
         holder.itemView.setOnClickListener(object :View.OnClickListener{
-            override fun onClick(v: View?) {
-                val activity = holder.view.context as AppCompatActivity
-                val detailFaskesDetailFragment =  FaskesDetailFragment()
-                activity.supportFragmentManager.beginTransaction().replace(R.id.recycler_view_bookmark, detailFaskesDetailFragment).addToBackStack(null).commit()
+            override fun onClick(v: View) {
+                val intent =  Intent(v.getContext(), DetailFaskesActivity::class.java)
+                v.getContext().startActivity(intent)
             }
         })
-        Log.d("position", position.toString())
     }
 
     override fun getItemCount(): Int = list?.size
