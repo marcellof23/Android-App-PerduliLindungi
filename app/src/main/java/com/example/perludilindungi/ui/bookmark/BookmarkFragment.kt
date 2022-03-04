@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,15 +38,6 @@ class BookmarkFragment : Fragment() {
     val listFaskes = ArrayList<FaskesItem?>()
     private lateinit var faskesAdapter: FaskesAdapter
 
-    val listUsers = arrayOf(
-        "Google",
-        "Apple",
-        "Microsoft",
-        "Asus",
-        "Zenpone",
-        "Acer"
-    )
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -71,7 +63,6 @@ class BookmarkFragment : Fragment() {
         return root
     }
 
-
     fun getBookMarkApi()  {
         val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
         val province = "DKI JAKARTA"
@@ -86,8 +77,6 @@ class BookmarkFragment : Fragment() {
                 call: Call<FaskesResponse>, response: Response<FaskesResponse>
             ) {
                 val res = response.body()
-                Log.d("data", res?.success.toString());
-                Log.d("data", res?.count_total.toString());
                 val success = res?.success
 
                 if (success == null) {
@@ -96,11 +85,8 @@ class BookmarkFragment : Fragment() {
 
                 else if (success == true) {
                     val data = res.data;
-
-                    Log.d("data_f", data?.get(0).toString());
-                    Log.d("data_f", data?.get(0)?.code.toString());
-                    Log.d("data_f", data?.get(0)?.address.toString());
-
+                    Log.d("data_fakses", data?.get(0)?.code.toString());
+                    Log.d("data_faskes", data?.get(1)?.code.toString());
                     for (i in 0 until res.count_total!!) {
                         listFaskes.add(data?.get(i))
                         if(res.count_total?.minus(1) == i){
@@ -113,7 +99,7 @@ class BookmarkFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<FaskesResponse>, t: Throwable) {
-                Log.d("EROR", "ERRORRRRRRRRRRRRRRRRR");
+                Log.d("Error", "true");
             }
         })
     }

@@ -10,7 +10,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardList"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="10dp"
@@ -23,44 +23,51 @@
 
                 <TextView
                     android:id="@+id/FaskesName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="12sp"/>
 
                 <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/FaskesAddress"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
                     android:layout_row="1"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/FaskesNumber"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:text="TextView"
+                    android:textSize="10sp"/>
 
                 <TextView
-                    android:id="@+id/FaskesCode"
+                    android:id="@+id/FaskesType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
                     android:layout_column="3"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAlignment="viewEnd"
+                    android:textSize="10sp" />
+
 
                 <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="2"
-                    android:layout_column="0"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/FaskesCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="2"
                     android:layout_column="3"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAlignment="viewEnd"
+                    android:textSize="10sp" />
 
             </GridLayout>
 

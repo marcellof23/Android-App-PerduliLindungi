@@ -28,6 +28,10 @@ class FaskesItem {
     @Expose
     var address: String? = null
 
+    @SerializedName("telp")
+    @Expose
+    var number: String? = null
+
     @SerializedName("jenis_faskes")
     @Expose
     var type: String? = null
