@@ -106,4 +106,8 @@
     </string-array>
 
     <string name="action_settings">Settings</string>
+    <string name="date">date</string>
+    <string name="title">Title</string>
+    <string name="dateValue">TextView</string>
+    <string name="image">image</string>
 </resources>
