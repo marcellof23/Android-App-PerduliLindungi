@@ -132,8 +132,12 @@ class LocationFragment : Fragment() {
                             println(lat)
                             println(long)
                             var sorted = listFaskes.sortedWith(compareBy { sqrt((it?.latitude?.toDouble()!! - lat) * (it?.latitude?.toDouble()!! - lat) + (it?.longitude?.toDouble()!! - long) * (it?.longitude?.toDouble()!! - long)) })
+                            var sortedLimit = ArrayList<FaskesItem?>()
+                            for(i in 0..4) {
+                                sortedLimit.add(sorted.get(i))
+                            }
                             Log.d("sortCheck", sorted.get(0)?.latitude.toString())
-                            val adapter = FaskesAdapter(listFaskes)
+                            val adapter = FaskesAdapter(sortedLimit)
                             adapter.notifyDataSetChanged()
                             bookmarkTextView.adapter = adapter
                         }
