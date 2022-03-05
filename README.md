@@ -41,7 +41,7 @@ Ketika aplikasi dibuka, akan ada tiga halaman utama yang dapat diakses menggunak
 ## Pembagian kerja
 - 13519071: Melakukan check-in, readme.
 - 13519085: Menampilkan berita COVID-19, menampilkan daftar faskes untuk vaksinasi.
-- 13519086: Menampilkan detail informasi faskes, menampilkan daftar bookmark faskes.
+- 13519086: Menampilkan detail informasi faskes, menampilkan daftar bookmark faskes, membuat bottom navigation bar, membuat tampilan UI pencarian faskes berdasarkan provinsi dan kota, membuat fitur bookmark dan unbookmark.
 
 ## Screenshot
 ![image](https://gitlab.informatika.org/farhandenira/if3210-2022-android-35/-/blob/main/screenshot/318812.jpg)
