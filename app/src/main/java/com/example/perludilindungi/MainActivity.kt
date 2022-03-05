@@ -1,6 +1,8 @@
 package com.example.perludilindungi
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -14,6 +16,8 @@ import com.example.perludilindungi.database.AppDatabase
 import com.example.perludilindungi.databinding.ActivityMainBinding
 import com.example.perludilindungi.injection.AppModule.providePerluDilindungiDB
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.perludilindungi.ui.checkin.CheckinActivity
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), IUseBottomNav {
 
@@ -40,9 +44,12 @@ class MainActivity : AppCompatActivity(), IUseBottomNav {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val fab: View = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            val intent = Intent(this@MainActivity, CheckinActivity::class.java)
+            startActivity(intent)
+//            overridePendingTransition(R.anim.slide_up, R.anim.slide_down)
+        }
     }
-}
-
-class ActivityMainBinding {
-
 }
