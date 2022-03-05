@@ -1,5 +1,7 @@
 package com.example.perludilindungi.models.news
 
+import android.util.EventLogTags
+import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import org.json.JSONObject
@@ -24,10 +26,10 @@ class NewsData {
 
     @SerializedName("description")
     @Expose
-    var description: JSONObject? = null
+    var description: Description? = null
 
     @SerializedName("enclosure")
     @Expose
-    var enclosure: Enclosure? = null
+    var enclosure: JsonObject? = null
 }
 

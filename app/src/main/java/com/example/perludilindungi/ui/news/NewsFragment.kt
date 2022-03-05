@@ -77,6 +77,9 @@ class NewsFragment : Fragment() {
                     Log.d("data_f", data?.get(0).toString());
                     Log.d("data_f", data?.get(0)?.title.toString());
                     Log.d("data_f", data?.get(0)?.link.toString());
+                    Log.d("data_enclosure",
+                        data?.get(0)?.enclosure?.get("_url")?.asString.toString());
+
 
                     for (i in 0 until res.count_total!!) {
                         listNews.add(data?.get(i))

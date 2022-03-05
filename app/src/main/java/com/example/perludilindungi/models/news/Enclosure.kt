@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
 class Enclosure {
     @SerializedName("_url")
     @Expose
-    var url: String? = null
+    var _url: String? = null
     @SerializedName("_length")
     @Expose
-    var length: String? = null
+    var _length: String? = null
     @SerializedName("_type")
     @Expose
-    var type: String? = null
+    var _type: String? = null
 }

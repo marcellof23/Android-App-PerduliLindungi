@@ -29,6 +29,16 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
+
+        <activity
+            android:name=".ui.news.WebActivity"
+            android:exported="true"
+
+            android:label="Web"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+
         <activity
             android:name=".SplashScreen"
             android:exported="true"
