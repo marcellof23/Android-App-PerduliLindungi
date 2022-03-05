@@ -38,8 +38,8 @@ class LocationFragment : Fragment() {
     val listFaskes = ArrayList<FaskesItem?>()
     val listProvince = ArrayList<String?>()
     var listCity = ArrayList<String?>()
-    lateinit var selectedProvince: Any
-    lateinit var selectedCity: Any
+    var selectedProvince: Any = "DKI JAKARTA"
+    var selectedCity: Any = "KOTA ADM. JAKARTA PUSAT"
 
     // This property is only valid between onCreateView and
     // onDestroyView.
