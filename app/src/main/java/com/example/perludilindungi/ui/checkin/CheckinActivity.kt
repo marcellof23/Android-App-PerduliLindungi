@@ -161,6 +161,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         if (requestCode == PERMISSION_REQUEST_ACCESS_LOCATION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(applicationContext, "Location access granted", Toast.LENGTH_SHORT).show()
+                getCurrentLocation()
             } else {
                 Toast.makeText(applicationContext, "Location access denied", Toast.LENGTH_SHORT).show()
             }
@@ -186,7 +187,10 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         checkinReq.qrCode = qrCode
         checkinReq.latitude = latitude
         checkinReq.longitude = longitude
-
+        println("============================POST ITEM===================")
+        println(checkinReq.qrCode)
+        println(checkinReq.latitude)
+        println(checkinReq.longitude)
         val retro = Retro().getRetroClientInstance().create(CheckInAPI::class.java)
 
         retro.sendCheckIn(checkinReq).enqueue(object : Callback<CheckInResponse> {
