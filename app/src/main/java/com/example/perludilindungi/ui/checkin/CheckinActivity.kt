@@ -128,7 +128,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
         ActivityCompat.requestPermissions(
             this, arrayOf(
                 android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
             ), PERMISSION_REQUEST_ACCESS_LOCATION
 
         )
