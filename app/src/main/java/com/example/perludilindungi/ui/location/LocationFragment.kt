@@ -20,7 +20,6 @@ import com.example.perludilindungi.models.faskes.FaskesCityResponse
 import com.example.perludilindungi.models.faskes.FaskesItem
 import com.example.perludilindungi.models.faskes.FaskesProvinceResponse
 import com.example.perludilindungi.models.faskes.FaskesResponse
-import com.example.perludilindungi.models.faskes.Result
 import com.example.perludilindungi.services.FaskesAPI
 import com.example.perludilindungi.utils.Retro
 import retrofit2.Call
@@ -125,6 +124,7 @@ class LocationFragment : Fragment() {
                     listFaskes.clear()
                     for (i in 0 until res.count_total!!) {
                         listFaskes.add(data?.get(i))
+                        Log.d("HEI,", data?.get(i)?.id.toString())
                         if(res.count_total?.minus(1) == i){
                             val adapter = FaskesAdapter(listFaskes)
                             adapter.notifyDataSetChanged()

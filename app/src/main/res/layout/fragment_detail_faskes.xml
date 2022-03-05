@@ -6,6 +6,19 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/faskesDetailNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No telp: "
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faskesDetailName"
+        app:layout_constraintVertical_bias="0.22" />
+
+    <TextView
         android:id="@+id/faskesDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,14 +103,12 @@
 
     <ImageView
         android:id="@+id/faskesDetailImage"
-        android:layout_width="214dp"
-        android:layout_height="242dp"
+        android:layout_width="185dp"
+        android:layout_height="203dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423"
         app:srcCompat="@drawable/check_circle_green" />
 
     <Button
