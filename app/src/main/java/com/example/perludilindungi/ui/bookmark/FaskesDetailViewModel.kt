@@ -11,6 +11,19 @@ import kotlinx.coroutines.launch
 
 class FaskesDetailViewModel(application: Application): AndroidViewModel(application) {
     val faskesDB = AppModule.providePerluDilindungiDB(application)
+    var faskes_id = -1
+
+    private val _faskeses = MutableLiveData<List<Faskes>>().apply {
+        value = showAllFaskes()
+    }
+
+    val faskeses: MutableLiveData<List<Faskes>> = _faskeses
+
+    private val _faskes = MutableLiveData<LiveData<Faskes>>().apply {
+        value = findFaskesById(faskes_id.toLong())
+    }
+
+    val faskes: MutableLiveData<LiveData<Faskes>> = _faskes
 
     fun addFaskes(faskes: Faskes){
         viewModelScope.launch(Dispatchers.IO) {
@@ -19,10 +32,18 @@ class FaskesDetailViewModel(application: Application): AndroidViewModel(applicat
         }
     }
 
-    fun showAllFaskes(){
-        viewModelScope.launch(Dispatchers.IO) {
-            val tes = faskesDB.faskesDao().showFaskeses()
-            Log.d("tagggggg", tes.get(0)?.address.toString())
-        }
+    fun showAllFaskes() : List<Faskes>? {
+        val tes = faskesDB.faskesDao().showFaskeses()
+        return tes
     }
+
+    fun findFaskesById(id : Long) : LiveData<Faskes> {
+        val tes = faskesDB.faskesDao().getFaskesById(id)
+        return tes
+    }
+
+    fun deleteFaskesById(id : Int) {
+        faskesDB.faskesDao().deleteBookmark(id)
+    }
+
 }

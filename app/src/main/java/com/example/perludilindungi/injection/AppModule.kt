@@ -23,7 +23,7 @@ object AppModule {
         app,
         AppDatabase::class.java,
         "perlu_dilindungi_db2"
-    ).build()
+    ).allowMainThreadQueries().build()
 
     @Singleton
     @Provides

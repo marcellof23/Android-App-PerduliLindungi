@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.perludilindungi.adapter.AdapterFaskes
 import com.example.perludilindungi.adapter.FaskesAdapter
+import com.example.perludilindungi.database.fakses.Faskes
 import com.example.perludilindungi.databinding.FragmentBookmarkBinding
 import com.example.perludilindungi.models.faskes.*
 import com.example.perludilindungi.services.FaskesAPI
@@ -23,8 +25,10 @@ import retrofit2.Response
 class BookmarkFragment : Fragment() {
 
     private lateinit var bookmarkViewModel: BookmarkViewModel
+    private lateinit var faskesDetailViewModel: FaskesDetailViewModel
     private var _binding: FragmentBookmarkBinding? = null
     val listFaskes = ArrayList<FaskesItem?>()
+    val listFaskes2 = ArrayList<Faskes?>()
 
 
     // This property is only valid between onCreateView and
@@ -39,6 +43,10 @@ class BookmarkFragment : Fragment() {
         bookmarkViewModel =
             ViewModelProvider(this).get(BookmarkViewModel::class.java)
 
+        faskesDetailViewModel =
+            ViewModelProvider(this).get(FaskesDetailViewModel::class.java)
+
+
         _binding = FragmentBookmarkBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -47,54 +55,28 @@ class BookmarkFragment : Fragment() {
             textView.text = it
         })
 
-        getBookMarkApi();
+        faskesDetailViewModel.faskeses.observe(viewLifecycleOwner, Observer{
+            var bookmarkTextView: RecyclerView = binding.recyclerViewBookmark
+            bookmarkTextView.setHasFixedSize(true)
+            bookmarkTextView.layoutManager = LinearLayoutManager(context)
+            for (i in 0 until it.size) {
+                listFaskes2.add(it.get(i))
+                Log.d("LIFECYCLEs", it.get(i).id_faskes.toString())
+                Log.d("LIFECYCLEs", it.size.toString())
+                if(it.size - 1 == i){
+                    val adapter = AdapterFaskes(listFaskes2)
+                    adapter.notifyDataSetChanged()
+                    bookmarkTextView.adapter = adapter
+                }
+            }
+        })
 
         return root
     }
 
-    fun getBookMarkApi()  {
-        val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
-        val province = "DKI JAKARTA"
-        val city = "KOTA ADM. JAKARTA PUSAT"
-
-        var bookmarkTextView: RecyclerView = binding.recyclerViewBookmark
-        bookmarkTextView.setHasFixedSize(true)
-        bookmarkTextView.layoutManager = LinearLayoutManager(context)
-
-        retro.getFaskesVaksinasi(province, city).enqueue(object : Callback<FaskesResponse> {
-            override fun onResponse(
-                call: Call<FaskesResponse>, response: Response<FaskesResponse>
-            ) {
-                val res = response.body()
-                val success = res?.success
-
-                if (success == null) {
-                    Log.d("data", "null");
-                }
-
-                else if (success == true) {
-                    val data = res.data;
-                    Log.d("data_fakses", data?.get(0)?.code.toString());
-                    Log.d("data_faskes", data?.get(1)?.code.toString());
-                    for (i in 0 until res.count_total!!) {
-                        listFaskes.add(data?.get(i))
-                        if(res.count_total?.minus(1) == i){
-                            val adapter = FaskesAdapter(listFaskes)
-                            adapter.notifyDataSetChanged()
-                            bookmarkTextView.adapter = adapter
-                        }
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<FaskesResponse>, t: Throwable) {
-                Log.d("Error", "true");
-            }
-        })
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
+        listFaskes2.clear()
         _binding = null
     }
 }

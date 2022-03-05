@@ -1,10 +1,6 @@
 package com.example.perludilindungi.ui.bookmark
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.perludilindungi.database.fakses.Faskes
 import com.example.perludilindungi.models.faskes.FaskesResponse
 import com.example.perludilindungi.services.FaskesAPI
@@ -23,11 +19,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import android.R
+import android.app.Application
 import android.view.View
 import android.widget.AdapterView
+import androidx.lifecycle.*
+import com.example.perludilindungi.injection.AppModule
+import kotlinx.coroutines.Dispatchers
 
 
-class BookmarkViewModel : ViewModel() {
+class BookmarkViewModel(application: Application): AndroidViewModel(application) {
     private val _text = MutableLiveData<String>().apply {
         value = "Bookmark Faskes"
     }
