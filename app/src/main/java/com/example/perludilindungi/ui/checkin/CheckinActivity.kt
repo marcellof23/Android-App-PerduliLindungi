@@ -61,7 +61,7 @@ class CheckinActivity : AppCompatActivity(), SensorEventListener {
             isSensorAvailable = true
 
         } else {
-            tvSuhu.setText("Temperature sensor is not available :(")
+            tvSuhu.setText("N/A")
             isSensorAvailable = false
         }
 

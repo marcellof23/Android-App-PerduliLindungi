@@ -1,5 +1,7 @@
 package com.example.perludilindungi.ui.bookmark
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +26,9 @@ import kotlinx.coroutines.launch
 class DetailFaskesActivity : AppCompatActivity() {
     private lateinit var binding: FragmentDetailFaskesBinding
     private val viewModel: MainViewModel by viewModels()
-
+    var nama: String = "KLINIK DPR RI"
+    var latitude: String = "-6.2101653"
+    var longitude: String = "106.8004706"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +44,12 @@ class DetailFaskesActivity : AppCompatActivity() {
             faskesDetailViewModel.addFaskes(faskes_data)
 
         }
-
+        var coordinate: String = "geo:"+latitude+","+longitude+"?q="
         binding.buttonGmaps.setOnClickListener {
-            faskesDetailViewModel.showAllFaskes()
+            var intent: Intent = Intent(Intent.ACTION_VIEW)
+            intent.setData(Uri.parse(coordinate + Uri.encode(nama)))
+            var chooser: Intent = Intent.createChooser(intent, "Launch Maps")
+            startActivity(chooser)
         }
     }
 }
