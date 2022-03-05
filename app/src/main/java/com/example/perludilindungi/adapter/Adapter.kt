@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,11 @@ class FaskesAdapter(private val list:ArrayList<FaskesItem?>) : RecyclerView.Adap
         holder.itemView.setOnClickListener(object :View.OnClickListener{
             override fun onClick(v: View) {
                 val intent =  Intent(v.getContext(), DetailFaskesActivity::class.java)
+                intent.putExtra("code", v.findViewById<TextView>(R.id.FaskesCode).text.toString())
+                intent.putExtra("address", v.findViewById<TextView>(R.id.FaskesAddress).text.toString())
+                intent.putExtra("name", v.findViewById<TextView>(R.id.FaskesName).text.toString())
+                intent.putExtra("type", v.findViewById<TextView>(R.id.FaskesType).text.toString())
+                intent.putExtra("number", v.findViewById<TextView>(R.id.FaskesNumber).text.toString())
                 v.getContext().startActivity(intent)
             }
         })

@@ -14,7 +14,8 @@ class FaskesDetailViewModel(application: Application): AndroidViewModel(applicat
 
     fun addFaskes(faskes: Faskes){
         viewModelScope.launch(Dispatchers.IO) {
-            faskesDB.faskesDao().insert(faskes)
+            var tes = faskesDB.faskesDao().insertFaskes(faskes)
+            Log.d("tagggggg", tes.toString())
         }
     }
 

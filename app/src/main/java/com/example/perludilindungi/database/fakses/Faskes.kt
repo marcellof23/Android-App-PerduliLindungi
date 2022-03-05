@@ -8,6 +8,7 @@ import java.util.*
 
 @Entity(tableName = "faskes_table")
 data class Faskes(
+    var id_faskes: Int,
     var name: String,
     var code: String,
     var address: String,

@@ -40,7 +40,7 @@ class DetailFaskesActivity : AppCompatActivity() {
             ViewModelProvider(this).get(FaskesDetailViewModel::class.java)
 
         binding.buttonBookmark.setOnClickListener{
-            val faskes_data = Faskes("tes", "tes", "tes","tes","tes", "tes", "tes", "tes")
+            val faskes_data = Faskes(12344, "tes", "tes", "tes","tes","tes", "tes", "tes", "tes", )
             faskesDetailViewModel.addFaskes(faskes_data)
 
         }
