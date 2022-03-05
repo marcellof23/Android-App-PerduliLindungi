@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/article_foreground"
+        android:iconTint="#FFFFFF"
+        android:title="@string/news" />
+    <item
+        android:id="@+id/navigation_location"
+        android:icon="@drawable/ic_launcher_location_foreground"
+        android:iconTint="#FFFFFF"
+        android:title="@string/lokasi_vaksin" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
-
-    <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_bookmark"
+        android:icon="@drawable/bookmark_foreground"
+        android:iconTint="@color/white"
+        android:title="@string/bookmark" />
 
 </menu>

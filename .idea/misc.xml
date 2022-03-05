@@ -17,6 +17,62 @@
         <entry key="..\:/KULIAH SMT 6/IF3210 Pengembangan Aplikasi pada Platform Khusus/if3210-2022-android-35/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/KULIAH SMT 6/IF3210 Pengembangan Aplikasi pada Platform Khusus/if3210-2022-android-35/app/src/main/res/layout/fragment_dashboard.xml" value="0.17083333333333334" />
         <entry key="..\:/KULIAH SMT 6/IF3210 Pengembangan Aplikasi pada Platform Khusus/if3210-2022-android-35/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/git/if3210-2022-android-35/app/src/main/res/layout/card_news.xml" value="0.5" />
+        <entry key="..\:/git/if3210-2022-android-35/app/src/main/res/layout/fragment_location.xml" value="0.3625" />
+        <entry key="..\:/git/if3210-2022-android-35/app/src/main/res/layout/fragment_news.xml" value="0.3625" />
+        <entry key="..\:/git/if3210-2022-android-35/app/src/main/res/layout/webview_news.xml" value="0.3078125" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/article_foreground.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/drawable/bookmark_foreground.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/drawable/check_circle_green.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/check_circle_yellow.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/cross_circle_black.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/cross_circle_red.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_location_background.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/ic_launcher_location_foreground.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/ic_launcher_user_background.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_user_foreground.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/news24dp_background.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/news_background.xml" value="0.15833333333333333" />
+        <entry key="app/src/main/res/drawable/qrscanner.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/temperature_bg.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.2285809906291834" />
+        <entry key="app/src/main/res/layout-w936dp/content_scrolling.xml" value="0.24009562841530055" />
+        <entry key="app/src/main/res/layout/activity_bookmark.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_checkin.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_detail_faskes.xml" value="0.20677083333333332" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_news.xml" value="0.18484848484848485" />
+        <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.3183876811594203" />
+        <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_detail_faskes.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_location.xml" value="0.39461883408071746" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.12427745664739884" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.23505434782608695" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20260416666666667" />
+        <entry key="app/src/main/res/layout/fragment_third.xml" value="0.20260416666666667" />
+        <entry key="app/src/main/res/layout/list_bookmark.xml" value="0.49238578680203043" />
+        <entry key="app/src/main/res/layout/list_location.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_news.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/bookmark.xml" value="0.371875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/bookmark_round.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_location_round.xml" value="0.371875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2140625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_user.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_user_round.xml" value="0.371875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/news.xml" value="0.371875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/news24dp.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/news24dp_round.xml" value="0.20092592592592592" />
       </map>
     </option>
   </component>
@@ -25,5 +81,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>
