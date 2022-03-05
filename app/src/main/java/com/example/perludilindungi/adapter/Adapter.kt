@@ -29,12 +29,12 @@ class FaskesAdapter(private val list:ArrayList<FaskesItem?>) : RecyclerView.Adap
         holder.view.FaskesNumber.text = list?.get(position)?.number
         holder.itemView.setOnClickListener(object :View.OnClickListener{
             override fun onClick(v: View) {
-                holder.view.FaskesCode.text = v.findViewById<TextView>(R.id.FaskesCode).toString()
-                holder.view.FaskesAddress.text = v.findViewById<TextView>(R.id.FaskesAddress).toString()
-                holder.view.FaskesName.text = v.findViewById<TextView>(R.id.FaskesName).toString()
-                holder.view.FaskesType.text = v.findViewById<TextView>(R.id.FaskesType).toString()
-                holder.view.FaskesNumber.text = v.findViewById<TextView>(R.id.FaskesNumber).toString()
                 val intent =  Intent(v.getContext(), DetailFaskesActivity::class.java)
+                intent.putExtra("code", v.findViewById<TextView>(R.id.FaskesCode).text.toString())
+                intent.putExtra("address", v.findViewById<TextView>(R.id.FaskesAddress).text.toString())
+                intent.putExtra("name", v.findViewById<TextView>(R.id.FaskesName).text.toString())
+                intent.putExtra("type", v.findViewById<TextView>(R.id.FaskesType).text.toString())
+                intent.putExtra("number", v.findViewById<TextView>(R.id.FaskesNumber).text.toString())
                 v.getContext().startActivity(intent)
             }
         })
