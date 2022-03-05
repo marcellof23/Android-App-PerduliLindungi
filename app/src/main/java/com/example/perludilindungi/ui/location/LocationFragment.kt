@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -36,7 +37,9 @@ class LocationFragment : Fragment() {
     private var _binding: FragmentLocationBinding? = null
     val listFaskes = ArrayList<FaskesItem?>()
     val listProvince = ArrayList<String?>()
-    val listCity = ArrayList<String?>()
+    var listCity = ArrayList<String?>()
+    var selectedProvince: Any = "DKI JAKARTA"
+    var selectedCity: Any = "KOTA ADM. JAKARTA PUSAT"
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -58,16 +61,49 @@ class LocationFragment : Fragment() {
             textView.text = it
         })
 
+        binding.buttonSearch.setOnClickListener {
+            selectedProvince = binding.spinnerProvinsi.selectedItem
+            selectedCity = binding.spinnerKota.selectedItem
+            getFaskesApi(selectedProvince as String,  selectedCity as String)
+        }
+
+        binding.spinnerProvinsi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener,
+            AdapterView.OnItemClickListener {
+            override fun onItemClick(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedProvince = binding.spinnerProvinsi.selectedItem
+                selectedCity = binding.spinnerKota.selectedItem
+                Log.d("provinsi dipilih", selectedProvince as String)
+                getCityApi(selectedProvince as String)
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedProvince = binding.spinnerProvinsi.selectedItem
+                selectedCity = binding.spinnerKota.selectedItem
+                Log.d("provinsi dipilih", selectedProvince as String)
+                getCityApi(selectedProvince as String)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
         getProvinceApi()
-        getCityApi()
-//        getFaskesApi()
+        getCityApi(selectedProvince as String)
 
         return root
     }
-    fun getFaskesApi()  {
+    fun getFaskesApi(province: String,  city: String)  {
         val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
-        val province = "DKI JAKARTA"
-        val city = "KOTA ADM. JAKARTA PUSAT"
 
         var bookmarkTextView: RecyclerView = binding.recyclerViewLocation
         bookmarkTextView.setHasFixedSize(true)
@@ -86,8 +122,7 @@ class LocationFragment : Fragment() {
 
                 else if (success == true) {
                     val data = res.data;
-                    Log.d("data_fakses", data?.get(0)?.code.toString());
-                    Log.d("data_faskes", data?.get(1)?.code.toString());
+                    listFaskes.clear()
                     for (i in 0 until res.count_total!!) {
                         listFaskes.add(data?.get(i))
                         if(res.count_total?.minus(1) == i){
@@ -105,9 +140,9 @@ class LocationFragment : Fragment() {
         })
     }
 
-    fun getCityApi()  {
+    fun getCityApi(province : String)  {
+        Log.d("provinsiii", province)
         val retro = Retro().getRetroClientInstance().create(FaskesAPI::class.java)
-        val province = "DKI JAKARTA"
 
         var locationSpinner: Spinner = binding.spinnerKota
 
@@ -117,6 +152,7 @@ class LocationFragment : Fragment() {
             ) {
                 val res = response.body()
                 val data = res?.results;
+                listCity.clear()
                 for (i in 0 until res?.results?.size!!) {
                     listCity.add(data?.get(i)?.key)
                     if(res?.results?.size!!.minus(1) == i){
@@ -125,7 +161,7 @@ class LocationFragment : Fragment() {
                                 it, R.layout.simple_spinner_item, listCity
                             )
                         }
-                        spinnerArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerArrayAdapter?.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
                         locationSpinner.adapter = spinnerArrayAdapter
                     }
                 }
@@ -148,6 +184,7 @@ class LocationFragment : Fragment() {
             ) {
                 val res = response.body()
                 val data = res?.results;
+                listProvince.clear()
                 for (i in 0 until res?.results?.size!!) {
                     listProvince.add(data?.get(i)?.key)
                     if(res?.results?.size!!.minus(1) == i){
