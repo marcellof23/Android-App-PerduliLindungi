@@ -26,6 +26,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.widget.ArrayAdapter
+import com.example.perludilindungi.MainActivity
+import kotlinx.coroutines.MainScope
 import kotlin.math.sqrt
 
 
@@ -38,7 +40,8 @@ class LocationFragment : Fragment() {
     var listCity = ArrayList<String?>()
     var selectedProvince: Any = "DKI JAKARTA"
     var selectedCity: Any = "KOTA ADM. JAKARTA PUSAT"
-
+    var lat: Double = MainActivity.latitude!!
+    var long: Double = MainActivity.longitude!!
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -125,9 +128,9 @@ class LocationFragment : Fragment() {
                         listFaskes.add(data?.get(i))
                         Log.d("HEI,", data?.get(i)?.id.toString())
                         if(res.count_total?.minus(1) == i){
-                            var lat: Double = -6.882417
-                            var long: Double = 107.612653
 
+                            println(lat)
+                            println(long)
                             var sorted = listFaskes.sortedWith(compareBy { sqrt((it?.latitude?.toDouble()!! - lat) * (it?.latitude?.toDouble()!! - lat) + (it?.longitude?.toDouble()!! - long) * (it?.longitude?.toDouble()!! - long)) })
                             Log.d("sortCheck", sorted.get(0)?.latitude.toString())
                             val adapter = FaskesAdapter(listFaskes)
