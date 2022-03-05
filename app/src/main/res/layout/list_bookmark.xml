@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/FaskesName"
-                android:layout_width="300dp"
+                android:layout_width="260dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
                 android:text="TextView"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/FaskesAddress"
-                android:layout_width="300dp"
+                android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:layout_row="1"
                 android:layout_column="0"
@@ -50,7 +50,7 @@
 
             <TextView
                 android:id="@+id/FaskesNumber"
-                android:layout_width="300dp"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_row="2"
                 android:layout_column="0"
@@ -60,20 +60,19 @@
 
             <TextView
                 android:id="@+id/FaskesType"
-                android:layout_width="73dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
                 android:layout_column="3"
                 android:layout_weight="1"
                 android:background="#EF5DA8"
-                android:paddingHorizontal="10dp"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/FaskesCode"
-                android:layout_width="80dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_row="2"
                 android:layout_column="3"

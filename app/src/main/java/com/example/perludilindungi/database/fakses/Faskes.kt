@@ -12,8 +12,8 @@ data class Faskes(
     var code: String,
     var address: String,
     var number: String,
-    var faskesType: FaskesType,
-    var status: Long,
+    var faskesType: String,
+    var status: String,
     var province: String,
     var city: String,
 ) {

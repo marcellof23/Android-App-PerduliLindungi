@@ -19,9 +19,6 @@
             android:name=".ui.bookmark.DetailFaskesActivity"
             android:exported="true" />
         <activity
-            android:name=".DetailFaskes"
-            android:exported="true" />
-        <activity
             android:name=".ui.news.NewsActivity"
             android:exported="true" />
         <activity

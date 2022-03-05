@@ -22,7 +22,7 @@ object AppModule {
     ) = Room.databaseBuilder(
         app,
         AppDatabase::class.java,
-        APP_DB_NAME
+        "perlu_dilindungi_db"
     ).build()
 
     @Singleton

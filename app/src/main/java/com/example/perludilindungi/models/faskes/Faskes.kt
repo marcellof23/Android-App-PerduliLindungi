@@ -28,6 +28,14 @@ class FaskesItem {
     @Expose
     var address: String? = null
 
+    @SerializedName("latitude")
+    @Expose
+    var latitude: String? = null
+
+    @SerializedName("longitude")
+    @Expose
+    var longitude: String? = null
+
     @SerializedName("telp")
     @Expose
     var number: String? = null

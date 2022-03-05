@@ -8,8 +8,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.fragment.app.Fragment
+import androidx.room.Room
+import com.example.perludilindungi.database.AppDatabase
 
 import com.example.perludilindungi.databinding.ActivityMainBinding
+import com.example.perludilindungi.injection.AppModule.providePerluDilindungiDB
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : AppCompatActivity(), IUseBottomNav {
 
@@ -20,6 +24,8 @@ class MainActivity : AppCompatActivity(), IUseBottomNav {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val db = providePerluDilindungiDB(applicationContext)
 
         val navView: BottomNavigationView = binding.navView
 
