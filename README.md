@@ -36,6 +36,7 @@ Ketika aplikasi dibuka, akan ada tiga halaman utama yang dapat diakses menggunak
 - Google Play services  : Akses lokasi pengguna
 - Retrofit              : Melakukan akses API
 - Gson                  : Melakukan operasi pada file json
+- Picasso               : load image dari URL
 
 ## Pembagian kerja
 - 13519071: Melakukan check-in, readme.
