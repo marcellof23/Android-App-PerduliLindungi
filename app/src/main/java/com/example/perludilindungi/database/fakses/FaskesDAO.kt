@@ -30,4 +30,7 @@ interface FaskesDAO : BaseDao<Faskes> {
 
     @Query("DELETE FROM faskes_table WHERE id = :id")
     fun deleteBookmark(id: Long): Void
+
+    @Query("SELECT * FROM faskes_table WHERE code = :kode limit 1")
+    fun findFaskesByCode(kode: String): Faskes
 }
