@@ -26,8 +26,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.widget.ArrayAdapter
-
-
+import kotlin.math.sqrt
 
 
 class LocationFragment : Fragment() {
@@ -126,6 +125,11 @@ class LocationFragment : Fragment() {
                         listFaskes.add(data?.get(i))
                         Log.d("HEI,", data?.get(i)?.id.toString())
                         if(res.count_total?.minus(1) == i){
+                            var lat: Double = -6.882417
+                            var long: Double = 107.612653
+
+                            var sorted = listFaskes.sortedWith(compareBy { sqrt((it?.latitude?.toDouble()!! - lat) * (it?.latitude?.toDouble()!! - lat) + (it?.longitude?.toDouble()!! - long) * (it?.longitude?.toDouble()!! - long)) })
+                            Log.d("sortCheck", sorted.get(0)?.latitude.toString())
                             val adapter = FaskesAdapter(listFaskes)
                             adapter.notifyDataSetChanged()
                             bookmarkTextView.adapter = adapter
@@ -205,6 +209,33 @@ class LocationFragment : Fragment() {
             }
         })
     }
+
+//    fun getNearestFaskes(arr: ArrayList<FaskesItem?>, currLat: Double, currLong: Double): ArrayList<FaskesItem?> {
+//        var newArr = ArrayList<FaskesItem?>()
+//        var distanceArr = ArrayList<Double>()
+//        var idxArr = ArrayList<Int>()
+//        for(i in arr) {
+//            var lat = i?.latitude?.toDouble()!!
+//            var long = i?.longitude?.toDouble()!!
+//            var distance = sqrt((currLat - lat)*(currLat - lat) + (currLong - long)*(currLong - long))
+//            distanceArr.add(distance)
+//        }
+//        for(j in 1..5) {
+//            var idx = -1
+//            var nearDist: Double = distanceArr.get(0)
+//            for(i in 1..distanceArr.size) {
+//                if((distanceArr.get(i) <= nearDist) && idxArr.indexOf(i) != -1)
+//                    nearDist = (distanceArr.get(i))
+//                    idx += i
+//                    idx = idx - idx + i
+//            }
+//            if(idx != -1) {
+//                idxArr.add(idx)
+//                newArr.add(arr.get(idx))
+//            }
+//        }
+//        return newArr
+//    }
 
 
     override fun onDestroyView() {
