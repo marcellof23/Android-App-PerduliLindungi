@@ -43,3 +43,6 @@ Ketika aplikasi dibuka, akan ada tiga halaman utama yang dapat diakses menggunak
 - 13519085: Menampilkan berita COVID-19, menampilkan daftar faskes untuk vaksinasi.
 - 13519086: Menampilkan detail informasi faskes, menampilkan daftar bookmark faskes.
 
+## Screenshot
+![image](https://gitlab.informatika.org/farhandenira/if3210-2022-android-35/-/blob/main/screenshot/318812.jpg)
+
